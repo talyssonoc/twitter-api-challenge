@@ -32,6 +32,10 @@
     "react": "^0.13.3",
     "twitter": "^1.2.5"
   },
+  "engines": {
+    "node": "4.1.1",
+    "npm": "2.14.x"
+  },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
