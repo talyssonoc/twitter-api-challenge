@@ -1,0 +1,25 @@
+.app {
+  background-color: $blue;
+  border: 1px solid $blue;
+  max-width: $breakpoint-xs;
+  width: 100%;
+  margin: 0 auto;
+  font-family: helvetica;
+
+  &__title {
+    text-align: center;
+    font-size: 1.4em;
+    color: $white;
+    padding: 15px;
+    font-weight: normal;
+    margin: 0;
+  }
+}
+
+@media(min-width: $breakpoint-xs + 1) {
+  .app {
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

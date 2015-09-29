@@ -1,0 +1,16 @@
+.results {
+  background-color: $white;
+  padding: 5px;
+  border-radius: 0;
+
+  &__message {
+    font-size: 1.3em;
+    text-align: center;
+  }
+}
+
+@media(min-width: $breakpoint-xs + 1) {
+  .results {
+    border-radius: 0 0 5px 5px;
+  }
+}
