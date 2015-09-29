@@ -45,31 +45,4 @@ describe('Results', function() {
     expect(React.findDOMNode(message).textContent)
       .toEqual('No tweets found for this username.');
   });
-
-  it('should render the results', function() {
-    var React = require('react/addons');
-    var Results = require(resultsPath);
-    var TestUtils = React.addons.TestUtils;
-
-    var results = [
-      {
-        text: 'My tweet',
-        created_at: Date.now()
-      }
-    ];
-
-    var tweets = TestUtils.renderIntoDocument(
-      <Results
-        results={ results }
-        isSearching={ false }
-        isFirstLoad={ false }
-      />
-    );
-
-    var tweet = TestUtils.findRenderedDOMComponentWithClass(
-      tweets, 'tweet');
-
-    expect(tweet)
-      .toEqual('My tweet');
-  });
 });
