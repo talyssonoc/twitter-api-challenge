@@ -24,6 +24,10 @@ It is needed that you have Node, npm and gulp installed in your machine.
 
 You must also run `npm install` when you have all the requirements.
 
+## Deploy
+
+You must set your heroku app on the folder and then just run `git push heroku master`.
+
 ## Tests
 
 To run the tests, just run `npm test`
