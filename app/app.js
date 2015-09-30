@@ -22,6 +22,6 @@ app.get('/tweets', function(req, res) {
   });
 });
 
-app.listen(process.env.port || 8000, function() {
-  console.log('Listening on port 8000');
+app.listen(process.env.PORT || 8000, function() {
+  console.log('Listening.');
 });
