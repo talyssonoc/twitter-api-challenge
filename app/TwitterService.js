@@ -10,13 +10,20 @@ class TwitterService {
     });
   }
 
-  getTweets(term, callback) {
-    this.client.get(
-    'statuses/user_timeline',
-    {
+  getTweets(term, callback, options) {
+    var options = {
       screen_name: term,
       count: 20
-    },
+    };
+
+    if(options.lastId) {
+      options.max_id = options.lastId;
+      options.since_id = options.sinceId;
+    }
+
+    this.client.get(
+    'statuses/user_timeline',
+    options,
     function(error, tweets, response) {
       if(error) {
         console.log(error);
