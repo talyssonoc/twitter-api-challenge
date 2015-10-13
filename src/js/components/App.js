@@ -27,9 +27,31 @@ class App extends React.Component {
 
     twitter.getTweets(term, (results) => {
       this.setState({
+        currentUsername: term,
         isSearching: false,
-        results: results
+        results: results,
+        sinceId: results[0].id_str,
+        lastId: results[results.length - 1].id_str
       });
+    });
+  }
+
+  handleScroll() {
+    const { twitter } = this.props;
+
+    this.setState({
+      isSearching: true
+    });
+
+    twitter.getTweets(this.state.currentUsername, (results) => {
+
+      this.setState({
+        isSearching: false,
+        results: this.state.results.concat(results)
+      });
+    }, {
+      sinceId: this.state.sinceId,
+      lastId: this.state.lastId
     });
   }
 
@@ -44,6 +66,7 @@ class App extends React.Component {
           results={ this.state.results }
           isSearching={ this.state.isSearching }
           isFirstLoad={ this.state.isFirstLoad }
+          scrolledToEnd={ () => this.handleScroll() }
         />
       </div>
     );

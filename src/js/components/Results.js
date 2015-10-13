@@ -3,6 +3,24 @@ import React from 'react';
 import Tweet from './Tweet';
 
 class Results extends React.Component {
+  constructor(props) {
+    super(props);
+
+    document.addEventListener('scroll', () => {
+      const loader = React.findDOMNode(this.refs.loader);
+
+      if(loader) {
+        const rect = loader.getBoundingClientRect();
+
+        if(rect.top <= (window.innerHeight ||
+                            document.documentElement.clientHeight)) {
+          this.props.scrolledToEnd();
+        }
+      }
+
+    });
+  }
+
   render() {
     const { results } = this.props;
     var content;
@@ -14,7 +32,7 @@ class Results extends React.Component {
         </div>
       );
     }
-    else if(this.props.isSearching) {
+    else if(this.props.isSearching && !results.length) {
       content = (
         <div className="results__message">
           Loading results...
@@ -34,6 +52,23 @@ class Results extends React.Component {
           key={ tweet.id_str || Date.now() }
           tweet={ tweet }/>
       ));
+
+      var end;
+
+      if(this.props.isSearching) {
+        end = (
+          <div className="results__message">
+            Loading new tweets, sit and wait.
+          </div>
+        );
+      }
+      else {
+        end = (
+          <div ref="loader"></div>
+        );
+      }
+
+      content.push(end);
     }
 
     return (
