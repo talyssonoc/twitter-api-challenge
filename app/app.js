@@ -19,6 +19,9 @@ app.get('/', function(req, res) {
 app.get('/tweets', function(req, res) {
   twitter.getTweets(req.query.username, function(tweets) {
     res.json(tweets);
+  }, {
+    last_id: req.query.last_id,
+    since_id: req.query.since_id
   });
 });
 
